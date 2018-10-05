@@ -6,7 +6,7 @@ use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
  * Shared configuration service
  */
 $di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
+    return include BASE_PATH . '/cli/config/config.php';
 });
 
 
@@ -20,12 +20,14 @@ $di->setShared('logger', function () {
     return new \Phalcon\Logger\Adapter\File($loggerFile, ['mode' => 'a']);
 });
 
+
 /**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
 $di->setShared('modelsMetadata', function () {
     return new MetaDataAdapter();
 });
+
 
 /**
  * Redis Service
@@ -40,6 +42,7 @@ $di->setShared('redis', function () use ($di) {
 
     return $backendRedis;
 });
+
 
 /**
  * Starts the session the first time some component requests the session service
@@ -142,7 +145,6 @@ $di->setShared('beanstalk', function () {
     $config = $this->getConfig();
     return new Phalcon\Queue\Beanstalk($config->beanstalk->toArray());
 });
-
 
 
 /**

@@ -16,13 +16,13 @@ $di = new FactoryDefault();
 /**
  * Include general services
  */
-include APP_PATH . '/config/services.php';
+include BASE_PATH . '/cli/config/services.php';
 
 
 /**
  * Include Autoloader
  */
-include APP_PATH . '/config/loader.php';
+include BASE_PATH . '/cli/config/loader.php';
 
 /**
  * Get config service for use in inline setup below
@@ -53,7 +53,7 @@ $console = new ConsoleApp($di);
 
 
 $arguments = [];
-$params = [];
+$params    = [];
 
 foreach ($argv as $k => $arg) {
     if ($k == 1) {

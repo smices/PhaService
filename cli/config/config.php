@@ -3,15 +3,15 @@
  * The application settings
  */
 return new \Phalcon\Config([
-    'appName' => 'PhaService',
-    'version' => '1.0.181005',
-    'rev_version' => 'α', //α,β,R
-    'website' => 'https://www.qhbit.cn',
+    'appName'            => 'PhaService',
+    'version'            => '1.0.181005',
+    'rev_version'        => 'α', //α,β,R
+    'website'            => 'https://www.qhbit.cn',
 
     /**
      * Database
      */
-    'database' => [
+    'database'           => [
         'adapter'    => 'Mysql',
         'host'       => 'localhost',
         'username'   => 'root',
@@ -24,11 +24,11 @@ return new \Phalcon\Config([
     /**
      * Application
      */
-    'application' => [
-        'modelsDir'      => str_replace('/app/', '/cli/', APP_PATH) . '/models/',
-        'migrationsDir'  => APP_PATH . '/migrations/',
-        'controllersDir' => APP_PATH . '/tasks/',
-        'libraryDir'     => APP_PATH . '/library/',
+    'application'        => [
+        'modelsDir'      => BASE_PATH . '/app/models/',
+        'migrationsDir'  => BASE_PATH . '/cli/migrations/',
+        'controllersDir' => BASE_PATH . '/cli/tasks/',
+        'libraryDir'     => BASE_PATH . '/cli/library/',
         //'middlewareDir'  => APP_PATH . '/middleware/',
         //'baseUri'        => '/',
     ],
@@ -36,7 +36,7 @@ return new \Phalcon\Config([
     /**
      * Redis config
      */
-    'redis'       => [
+    'redis'              => [
         'prefix'     => '',
         'lifetime'   => 86400,
         'host'       => '127.0.0.1',
@@ -48,17 +48,17 @@ return new \Phalcon\Config([
     /**
      * Message Queue
      */
-    'beanstalk' => [
-        'host' => '127.0.0.1',
-        'port' => 11300,
-        'persistent'=>TRUE
+    'beanstalk'          => [
+        'host'       => '127.0.0.1',
+        'port'       => 11300,
+        'persistent' => TRUE,
     ],
 
     /**
      * tasksDir is the absolute path to your tasks directory
      * For instance, 'tasksDir' => realpath(dirname(dirname(__FILE__))).'/tasks',
      */
-    'tasksDir' =>  APP_PATH . '/tasks/',
+    'tasksDir'           => BASE_PATH . '/cli/tasks/',
 
     /**
      * annotationsAdapter is the choosen adapter to read annotations.

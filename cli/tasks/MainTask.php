@@ -5,9 +5,13 @@
  * @description('Welcome', '显示欢迎信息')
  */
 
-
 class MainTask extends TaskBase
 {
+    /**
+     * Main
+     *
+     * @description('显示系统消息')
+     */
     public function mainAction()
     {
         return $this->dispatcher->forward([
@@ -15,5 +19,6 @@ class MainTask extends TaskBase
             "action"     => "main",
         ]);
     }//end
+
 
 }//end

@@ -19,13 +19,3 @@ function sd(...$vars)
 }
 
 Kint::$aliases[] = 'sd';
-
-/**
- * Whoops
- */
-//$whoops = new \Whoops\Run;
-//$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-//$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler);
-//$whoops->pushHandler(new \Whoops\Handler\XmlResponseHandler);
-//$whoops->pushHandler(new \Whoops\Handler\JsonResponseHandler);
-//$whoops->register();

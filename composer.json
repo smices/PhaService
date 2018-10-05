@@ -1,19 +1,18 @@
 {
-    "name": "jackyzux/pha_service",
+    "name": "jackyzux/PhaService",
     "authors": [
         {
             "name": "jacky",
             "email": "jacky.ju@qq.com"
         }
     ],
-    "description": "Public Service",
+    "description": "Public Phalcon Service",
     "require": {
         "firebase/php-jwt": "^5.0",
         "hashids/hashids": "^2.0",
         "mobiledetect/mobiledetectlib": "^2.8",
-        "phalcon/incubator": "^3.2",
-        "symfony/console": "@stable",
-        "jakub-onderka/php-console-color": "~0.2"
+        "jakub-onderka/php-console-color": "~0.2",
+        "phalcon/incubator": "^3.4"
     },
     "require-dev": {
         "kint-php/kint": "dev-master"
@@ -33,7 +32,8 @@
         "post-root-package-install": [
             "php -r \"mkdir('var/log');\"",
             "php -r \"mkdir('var/cache');\"",
-            "php -r \"mkdir('var/tmp');\""
+            "php -r \"mkdir('var/tmp');\"",
+            "php -r \"mkdir('var/pid');\""
         ]
     }
 }

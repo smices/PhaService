@@ -1,18 +1,19 @@
 <?php
 $loader = new \Phalcon\Loader();
+
 $loader->registerDirs([
-    APP_PATH . '/tasks',
-    APP_PATH . '/library',
-    BASE_PATH . '/app/models'
+    BASE_PATH . '/cli/tasks',
+    BASE_PATH . '/cli/library',
+    BASE_PATH . '/app/models',
 ]);
+
 $loader->registerNamespaces([
-    'PhaService\Tasks' => APP_PATH . '/tasks',
+    //'Phalcon' => BASE_PATH . '/library/Phalcon',
 ]);
 
 $loader->register();
 
 require BASE_PATH . '/vendor/autoload.php'; //Composer Loader
-
 
 
 if ($dev = file_exists(BASE_PATH . '/.development') || $test = file_exists(BASE_PATH . '/.testing')) {
