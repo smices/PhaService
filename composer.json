@@ -1,0 +1,39 @@
+{
+    "name": "jackyzux/pha_service",
+    "authors": [
+        {
+            "name": "jacky",
+            "email": "jacky.ju@qq.com"
+        }
+    ],
+    "description": "Public Service",
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "hashids/hashids": "^2.0",
+        "mobiledetect/mobiledetectlib": "^2.8",
+        "phalcon/incubator": "^3.2",
+        "symfony/console": "@stable",
+        "jakub-onderka/php-console-color": "~0.2"
+    },
+    "require-dev": {
+        "kint-php/kint": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "vendor-dir": "vendor",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"mkdir('var/log');\"",
+            "php -r \"mkdir('var/cache');\"",
+            "php -r \"mkdir('var/tmp');\""
+        ]
+    }
+}
