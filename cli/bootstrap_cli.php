@@ -16,13 +16,13 @@ $di = new FactoryDefault();
 /**
  * Include general services
  */
-include BASE_PATH . '/cli/config/services.php';
+require BASE_PATH . '/cli/config/services.php';
 
 
 /**
  * Include Autoloader
  */
-include BASE_PATH . '/cli/config/loader.php';
+require BASE_PATH . '/cli/config/loader.php';
 
 /**
  * Get config service for use in inline setup below
