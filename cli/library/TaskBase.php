@@ -13,6 +13,7 @@ class TaskBase extends \Phalcon\Cli\Task
 
     /**
      * initialize
+     * @DoNotCover
      */
     public function initialize()
     {
@@ -22,6 +23,8 @@ class TaskBase extends \Phalcon\Cli\Task
 
     /**
      * Console Color Print
+     *
+     * @DoNotCover
      *
      * @param string $text
      * @param string $styles

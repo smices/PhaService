@@ -20,6 +20,7 @@ Trait MultiProcessor
     /**
      * CreateMultiProcessor
      *
+     * @DoNotCover
      * @param null  $max_precess
      * @param null  $process_name
      * @param false $debugger
@@ -58,6 +59,7 @@ Trait MultiProcessor
     /**
      * 控制台调试输出
      *
+     * @DoNotCover
      * @param $msg
      */
     public function cDebug($msg)
@@ -68,6 +70,8 @@ Trait MultiProcessor
 
     /**
      * Run multi process
+     *
+     * @DoNotCover
      */
     public function run()
     {
@@ -80,6 +84,7 @@ Trait MultiProcessor
     /**
      * Create sub process
      *
+     * @DoNotCover
      * @param null $index
      */
     public function CreateProcess($index = NULL)
@@ -119,6 +124,7 @@ Trait MultiProcessor
     /**
      * 真实任务处理, 子类请复写
      *
+     * @DoNotCover
      * @param $index
      * @param $param
      */
@@ -135,6 +141,7 @@ Trait MultiProcessor
     /**
      * 监控子进程状态,如果退出,重启子进程
      *
+     * @DoNotCover
      * @throws Exception
      */
     public function processWait()
@@ -160,6 +167,7 @@ Trait MultiProcessor
     /**
      * 重启子进程
      *
+     * @DoNotCover
      * @param $ret
      *
      * @throws Exception
