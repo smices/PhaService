@@ -22,7 +22,12 @@ class MailSenderTask extends TaskBase
             TRUE);
     }//end
 
-    function RealWork($index, $task)
+    /**
+     * 复写本函数进行真实的任务处理.
+     * @param $index
+     * @param $params
+     */
+    function RealWork($index, $params)
     {
         for ($i = 0; $i < 10; $i++) {
             $this->cout('[TASK][MAIL_SENDER]', 'f1');

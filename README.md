@@ -57,6 +57,14 @@ cd sys
 php GenSystemctlService.php
 ```
 
+*多进程Task任务处理*
+> 可以参考/cli/tasks/MailSenderTask.php, 复写 RealWork 函数进行真实的任务处理即可, 调用方式:
+```bash
+#查看帮助帮助 ./run mailsender -h
+./run mailsender 6 #参数 6 为开启6个子进程同时处理任务
+
+```
+
 ## Configuration
 
 ## Features
