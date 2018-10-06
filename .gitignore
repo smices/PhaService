@@ -4,6 +4,8 @@
 /.vagrant
 *~
 .DS_Store
+.development
+.testing
 composer.lock
 .phalcon
 /public/tools

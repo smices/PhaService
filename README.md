@@ -1,5 +1,7 @@
 # PhaService
-## Phalcon + Swoole 无侵入解决方案 
+
+## Phalcon + Swoole 无侵入解决方案
+
 Phalcon有着强大的性能同时又具备完整的MVC模式,    
 Swoole也具备在Phalcon之外的其他能力,如果把两者无缝的结合,   
 一定是一个不错的案例.   
@@ -11,6 +13,7 @@ Swoole也具备在Phalcon之外的其他能力,如果把两者无缝的结合,
 本案例可以作为系统服务使用, 也可以做Restful开发使用,作为Web使用更是毫无问题. 
 
 使用 wrk 做的的压测, 在MBP上的结果:
+
 ```bash
 wrk -c10000 -d10s --latency  http://127.0.0.1:8080/testRunning 10s test @ http://127.0.0.1:8080/test
   2 threads and 10000 connections
@@ -26,12 +29,15 @@ wrk -c10000 -d10s --latency  http://127.0.0.1:8080/testRunning 10s test @ http:/
 Requests/sec:  24104.01
 Transfer/sec:      3.64MB
 ```
+
 非常不错的结果. 
 
 ## Installation
+
 ** Web服务兼容Nginx+PHP-FPM模式,可以参考Phalcon的Nginx配置.
 
 *依赖*:
+
 > Ubuntu 16.04LTS/18.04LTS  
 > PHP: 7.0+, 推荐 7.2或以上  
 > Beantalkd 队列处理依赖   
@@ -40,33 +46,65 @@ Transfer/sec:      3.64MB
 > php扩展 Redis  
 > php扩展 Pdo,Pdo MySQL  
 
-*初始化*
+####初始化
+
 ```bash
 composer install -o
 ```
- 
+
 *使用Swoole的HttpServer开启服务:*
 建议使用Nginx做负载均衡,使PHP-FPM可以和Swoole的HttpServer同时提供服务. 
+
 ```bash
 ./serve start
 ```
+
 可以使用sys/GenSystemctlService.php可以生成systemd service文件,
 根据提示安装成服务.
+
 ```
 cd sys
 php GenSystemctlService.php
 ```
 
-*多进程Task任务处理*
-> 可以参考/cli/tasks/MailSenderTask.php, 复写 RealWork 函数进行真实的任务处理即可, 调用方式:
-```bash
-#查看帮助帮助 ./run mailsender -h
-./run mailsender 6 #参数 6 为开启6个子进程同时处理任务
+## Configuration
+#### 环境配置
+在项目的/目录下,建立空文件 `.development` 或 `.testing`则指定里开发环境与测试环境, 没有文件为生产环境. 文件同时存在, 有限开启开发环境. 
+```
+#开发环境
+rm .testing && touch .development 
 
+#测试环境
+rm .development && touch .testing 
+
+#生产环境
+rm .development .testing 
 ```
 
-## Configuration
+#### 数据库,Redis等配置:
+Web与Cli分开配置,配置文件位于:
+* App部分: `/app/config/config.php`   
+* Cli部分: `/cli/config/config.php`
+
+#### Swoole Http Server 配置:
+
 
 ## Features
+* Phalcon 完整支持  
+* Swoole Http Server
+* 多进程Task Worker 任务处理  
+* Beantalk 队列
+* Systemd自启服务
+
 
 ## Documents
+###多进程Task任务处理
+该服务会在任务处理完成后,持续拉起服务,所以可以实现类似php-fpm的特点, 任务处理指定次数后退出任务,服务会自动拉起服务.   
+具体可以参考/cli/tasks/MailSenderTask.php, 复写 RealWork 函数进行真实的任务处理即可, 调用方式:   
+```bash
+#查看帮助信息
+./run mailsender -h
+
+#参数 6 为开启6个子进程同时处理任务
+./run mailsender 6 
+```

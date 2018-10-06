@@ -77,6 +77,7 @@ Trait MultiProcessor
     {
         for ($i = 0; $i < $this->max_precess; $i++) {
             $this->CreateProcess();
+            usleep(500000);
         }
     }//end
 
