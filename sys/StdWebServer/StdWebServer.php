@@ -1,6 +1,6 @@
 <?php
 
-require BASE_PATH . '/vendor/jakub-onderka/php-console-color/src/ConsoleColor.php';
+require_once BASE_PATH . '/vendor/jakub-onderka/php-console-color/src/ConsoleColor.php';
 
 class StdWebServer
 {
@@ -30,16 +30,11 @@ class StdWebServer
 
         $this->consoleColor = new JakubOnderka\PhpConsoleColor\ConsoleColor();
 
-        $config = [
-            'address'         => '0.0.0.0',
-            'port'            => 8080,
-            'worker_num'      => 16,
-            'deamonize'       => FALSE,
-            'max_request'     => 10000,
-            'task_worker_num' => 2, //设置task worker数量
-            'dispatch_mode'   => 1,
-            'log_file'        => $log_file,
-        ];
+        $config = include BASE_PATH . '/sys/config/std_web_server.php';
+
+        if (NULL == $config['log_file']) {
+            $config['log_file'] = $log_file;
+        }
 
         echo PHP_EOL;
         $this->cout('┌' . str_repeat('─', 78), 'f159', TRUE);

@@ -1,7 +1,7 @@
 <?php
 $serviceTpl = <<<EOT
 [Unit]
-Description=PhaService StdWebServer
+Description=PhaService Standard Web Socket Server
 After=network.target syslog.target
 
 [Service]
@@ -16,12 +16,12 @@ Restart=always
 WantedBy=multi-user.target
 EOT;
 
-define('BASE_PATH', dirname(__DIR__));
+define('BASE_PATH', dirname(dirname(__DIR__)));
 
-$serviceFileName      = 'PhaService.service';
-$serviceFile          = __DIR__ . '/' . $serviceFileName;
-$servicePidFile       = BASE_PATH . '/var/pid/std_web_server.pid';
-$serviceControlScript = BASE_PATH . '/serve';
+$serviceFileName      = 'PS_StdWebSocketServer.service';
+$serviceFile          = BASE_PATH . '/var/tmp/' . $serviceFileName;
+$servicePidFile       = BASE_PATH . '/var/pid/std_web_socket_server.pid';
+$serviceControlScript = BASE_PATH . '/web_socket_serve';
 
 $ret = str_replace(
     ['{{PID_FILE}}', '{{SERVICE_CONTROL_SCRIPT}}',],

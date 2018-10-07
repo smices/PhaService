@@ -52,20 +52,34 @@ Transfer/sec:      3.64MB
 composer install -o
 ```
 
-*使用Swoole的HttpServer开启服务:*
+*开启 HttpServer 服务:*
 建议使用Nginx做负载均衡,使PHP-FPM可以和Swoole的HttpServer同时提供服务. 
 
 ```bash
-./serve start
+./web_serve start
 ```
 
-可以使用sys/GenSystemctlService.php可以生成systemd service文件,
+可以使用`sys/systemd/StdWebServer.GenService.php`可以生成`systemd service`文件,
 根据提示安装成服务.
 
 ```
-cd sys
-php GenSystemctlService.php
+cd sys/systemd/
+php StdWebServer.GenService.php
 ```
+
+*开启 WebSocketServer 服务:*
+```bash
+./web_socket_serve start
+```
+
+可以使用 `sys/systemd/StdWebSocketServer.GenService.php` 可以生成`systemd service`文件,
+根据提示安装成服务.
+
+```
+cd sys/systemd/
+php StdWebSocketServer.GenService.php
+```
+
 
 ## Configuration
 #### 环境配置
@@ -87,11 +101,16 @@ Web与Cli分开配置,配置文件位于:
 * Cli部分: `/cli/config/config.php`
 
 #### Swoole Http Server 配置:
+* 配置文件: `/sys/config/std_web_server.php`
+
+#### Swoole WebSocket Server 配置:
+* 配置文件: `/sys/config/std_web_socket_server.php`
 
 
 ## Features
 * Phalcon 完整支持  
-* Swoole Http Server
+* Http 服务器
+* WebSocket 服务器
 * 多进程Task Worker 任务处理  
 * Beantalk 队列
 * Systemd自启服务

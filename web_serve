@@ -145,7 +145,7 @@ case "$1" in
         echo "│                    https://www.qhbit.cn <jacky.ju@qq.com>                     │"
         echo "├───────────────────────────────────────────────────────────────────────────────┤"
         echo "│ Usage:                                                                        │"
-        echo "│  ./$(basename $0) {start|status|restart|reload|stop|kill}                              │"
+        echo "│  ./$(basename $0) {start|status|restart|reload|stop|kill}                          │"
         echo "└───────────────────────────────────────────────────────────────────────────────┘"
     ;;
 esac
