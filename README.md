@@ -117,6 +117,7 @@ Web与Cli分开配置,配置文件位于:
 
 
 ## Documents
+
 ###多进程Task任务处理
 该服务会在任务处理完成后,持续拉起服务,所以可以实现类似php-fpm的特点, 任务处理指定次数后退出任务,服务会自动拉起服务.   
 具体可以参考/cli/tasks/MailSenderTask.php, 复写 RealWork 函数进行真实的任务处理即可, 调用方式:   
@@ -127,3 +128,40 @@ Web与Cli分开配置,配置文件位于:
 #参数 6 为开启6个子进程同时处理任务
 ./run mailsender 6 
 ```
+
+### Web Socket 的使用
+WebSocket 使用Task DI, 所以控制器位于 /cli/wsockets/目录下.
+示例可以查看 /cli/wsockets/MainTask.php
+```php
+...
+public function mainAction()
+{
+    // 参数解析,务必加上,放在initialize中,只有mainAction生效,其他Action无效,所以请务必啰嗦的加上
+    // 也有可能是我的Phalcon版本问题
+    $this->parseArguments(); 
+    
+    // 请在这里写入真实逻辑业务处理
+    
+    //将结果返送给客户端, 发送内容是String, Int, Object都行
+    $this->send('WELCOME');
+}//end
+...    
+```
+
+发送指令示例:
+JSON格式转字符.可以使用JSON.stringify({...})把Object格式转换成String格式   
+cmd: Task.Action的组合,小写.   
+argv: 要传递给Action的参数. 可以在Php中用 $this->params访问   
+```javascript
+...
+websocket.send('{"cmd":"main.whoami","argv":"fuck"}');
+...
+```
+
+返回格式示例:
+cmd: 调用的原始命令,在于异步任务处理是,可以根据cmd找回呼叫的指令   
+ret: 处理结果
+```json
+{"cmd":"main.whoami","ret":3}
+```
+

@@ -1,4 +1,5 @@
 <?php
+
 use JakubOnderka\PhpConsoleColor\ConsoleColor;
 
 /**
@@ -6,17 +7,30 @@ use JakubOnderka\PhpConsoleColor\ConsoleColor;
  */
 class WebSocketBase extends \Phalcon\Cli\Task
 {
-    const APP_SERVICE_NAME = "PhaServiceTask";
+    const APP_SERVICE_NAME = "PhaServiceWebSocket";
 
     public $consoleColor;
 
+    public static $fd;
+    public        $params;
+
     /**
      * initialize
-     * @DoNotCover
      */
     public function initialize()
     {
         $this->consoleColor = new ConsoleColor();
+    }//end
+
+
+    public function parseArguments($arguments = NULL)
+    {
+        $v = $arguments ?? $this->router->getParams();
+        if (!isset($v['fd']) || !isset($v['data'])) {
+            throw new Exception('BAD PARAMS');
+        }
+        self::$fd     = $v['fd'];
+        $this->params = $v['data'];
     }//end
 
 
@@ -51,5 +65,30 @@ class WebSocketBase extends \Phalcon\Cli\Task
         if (TRUE == $newLine) echo PHP_EOL;
     }//end
 
+
+    /**
+     * 传送消息到客户端
+     *
+     * @param mixed $data
+     */
+    public function send($data)
+    {
+        $trace  = debug_backtrace(0, 3);
+        $class  = $trace[1]['class'] ?? 'nil';
+        $func   = $trace[1]['function'] ?? 'nil';
+        $action = strtolower(str_replace('Task', '', $class)
+            . '.' . str_replace('Action', '', $func));
+
+        if (is_string($data) || is_array($data) || is_int($data)) {
+            $ret = ['cmd' => $action, 'ret' => $data];
+        } elseif (is_object($data)) {
+            $ret      = new stdClass();
+            $ret->cmd = $action;
+            $ret->ret = $data;
+        }else{
+            $ret = ['cmd' => $action, 'ret' => $data];
+        }
+        $this->ws->push(self::$fd, json_encode($ret));
+    }//end
 
 }//end

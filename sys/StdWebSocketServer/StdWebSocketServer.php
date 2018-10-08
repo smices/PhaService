@@ -226,54 +226,6 @@ class StdWebSocketServer
 
 
     /**
-     * @param swoole_http_request  $request
-     * @param swoole_http_response $response
-     *
-     * @return bool
-     */
-    /*
-        public function onHandshake(swoole_http_request $request, swoole_http_response $response)
-        {
-            //自定定握手规则，没有设置则用系统内置的（只支持version:13的）
-            if (!isset($request->header['sec-websocket-key'])) {
-                //'Bad protocol implementation: it is not RFC6455.'
-                $response->end();
-                return FALSE;
-            }
-            if (0 === preg_match('#^[+/0-9A-Za-z]{21}[AQgw]==$#', $request->header['sec-websocket-key'])
-                || 16 !== strlen(base64_decode($request->header['sec-websocket-key']))
-            ) {
-                //Header Sec-WebSocket-Key is illegal;
-                $response->end();
-                return FALSE;
-            }
-            $key     = base64_encode(sha1($request->header['sec-websocket-key']
-                . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
-                TRUE));
-            $headers = [
-                'Upgrade'               => 'websocket',
-                'Connection'            => 'Upgrade',
-                'Sec-WebSocket-Accept'  => $key,
-                'Sec-WebSocket-Version' => '13',
-                'KeepAlive'             => 'on',
-            ];
-            foreach ($headers as $key => $val) {
-                $response->header($key, $val);
-            }
-            $response->status(101);
-            $response->end();
-
-            $fd     = $request->fd;
-            $server = $this->ws;
-
-            $this->ws->defer(function () use ($fd, $server) {
-                $server->push($fd, 'U' . $fd . ', PhaService.StdWebSocketServer Welcome!');
-            });
-            return TRUE;
-        }//end
-    */
-
-    /**
      * 进程启动
      *
      * @param $serv
@@ -330,37 +282,26 @@ class StdWebSocketServer
             . ', RECEIVED DATA:' . $data . ', LEN:'
             . strlen($data), 'f3', TRUE);
 
-//        switch (!empty($data)) {
-//            case $data == 'close' :
-//                $ws->close($fd);
-//                break;
-//            case $data == 'whoami':
-//                $ws->push($fd, 'U' . $fd);
-//                break;
-//            case $data == 'task' :
-//                $ret = $ws->task(['fd' => $fd, 'action' => 'yes']);
-//                $ws->push($fd, json_encode($ret));
-//                break;
-//            case $data == 'online':
-//                $ws->push($fd, count($this->cStore));
-//                break;
-//            default:
-//                $_send = str_repeat('B', rand(100, 800));
-//                $ws->push($frame->fd, $_send);
-//        }
-
         //处理请求
         try {
-            $arguments           = [];
-            $arguments['task']   = 'main';
-            $arguments['action'] = 'main';
-            $arguments['params'] = ['fd' => $fd, 'data' => $data];
-
-            $this->application->handle($arguments);
-            //$ws->push($fd, $ret);
+            if ('online' == $data) {
+                $ws->push($fd, count($this->cStore));
+            } else {
+                $args = json_decode($data, JSON_OBJECT_AS_ARRAY);
+                if (0 == json_last_error_msg()) {
+                    $action              = explode('.', $args['cmd']);
+                    $arguments           = [];
+                    $arguments['task']   = $action[0] ?? 'main';
+                    $arguments['action'] = $action[1] ?? 'main';
+                    $arguments['params'] = ['fd' => $fd, 'data' => $args['argv']];
+                    s($arguments);
+                    $this->application->handle($arguments);
+                }else{
+                    $ws->push($fd, 'COMMAND ERROR');
+                }
+            }
         } catch (Exception $e) {
             $ws->push($fd, $e->getMessage());
-            sd($e);
         }
 
     }//end
