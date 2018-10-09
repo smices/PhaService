@@ -110,3 +110,14 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+
+/**
+ * Message Queue
+ */
+$di->setShared('beanstalk', function () {
+    $config = $this->getConfig();
+    //return new Phalcon\Queue\Beanstalk($config->beanstalk->toArray());
+    return new Beanspeak\Client($config->beanstalk->toArray());
+});
+

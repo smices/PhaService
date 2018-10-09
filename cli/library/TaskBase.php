@@ -53,4 +53,19 @@ class TaskBase extends \Phalcon\Cli\Task
     }//end
 
 
+    /**
+     * Debugger msg
+     *
+     * @param string $text
+     * @param string $styles
+     * @param bool   $newLine
+     *
+     * @return  void
+     */
+    public function dm($text, $styles = 'f255', $newLine = TRUE)
+    {
+        if (!APP_DEBUGGER) return;
+        $this->cout('[' . date('Y/m/d H:i:s') . ']' . $text, $styles, $newLine);
+    }//end
+
 }//end

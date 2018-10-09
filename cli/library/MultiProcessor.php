@@ -129,7 +129,7 @@ Trait MultiProcessor
      * @param $index
      * @param $param
      */
-    function RealWork($index, $param)
+    public function RealWork($index, $param)
     {
         $this->cDebug(sprintf(
             "[REAL_WORK][%s] WORKER_INDEX:%d, PARAM:%s",

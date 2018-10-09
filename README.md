@@ -38,12 +38,13 @@ Transfer/sec:      3.64MB
 
 *依赖*:
 
-> Ubuntu 16.04LTS/18.04LTS  
-> PHP: 7.0+, 推荐 7.2或以上  
-> Beantalkd 队列处理依赖   
-> php扩展 Phalcon 3.x+  
-> php扩展 Swoole 2.x+  
+> Ubuntu 16.04LTS/18.04LTS   
+> PHP: 7.0+, 推荐 7.2或以上    
+> Beantalkd 队列处理依赖    
+> php扩展 Phalcon 3.x+    
+> php扩展 Swoole 2.x+    
 > php扩展 Redis  
+> php扩展 Beanspeak  
 > php扩展 Pdo,Pdo MySQL  
 
 ####初始化
@@ -128,12 +129,14 @@ Web与Cli分开配置,配置文件位于:
 #参数 6 为开启6个子进程同时处理任务
 ./run mailsender 6 
 ```
+** Beantalk 队列可以使用 https://github.com/xuri/aurora 可视化工具进行操作管理.
+
 
 ### Web Socket 的使用
 WebSocket 使用Task DI, 所以控制器位于 /cli/wsockets/目录下.
 示例可以查看 /cli/wsockets/MainTask.php
 ```php
-...
+//...
 public function mainAction()
 {
     // 参数解析,务必加上,放在initialize中,只有mainAction生效,其他Action无效,所以请务必啰嗦的加上
@@ -145,7 +148,7 @@ public function mainAction()
     //将结果返送给客户端, 发送内容是String, Int, Object都行
     $this->send('WELCOME');
 }//end
-...    
+//...    
 ```
 
 发送指令示例:
@@ -153,9 +156,11 @@ JSON格式转字符.可以使用JSON.stringify({...})把Object格式转换成Str
 cmd: Task.Action的组合,小写.   
 argv: 要传递给Action的参数. 可以在Php中用 $this->params访问   
 ```javascript
-...
-websocket.send('{"cmd":"main.whoami","argv":"fuck"}');
-...
+
+//...
+websocket.send('{"cmd":"main.whoami","argv":"anything"}');
+//...
+
 ```
 
 返回格式示例:

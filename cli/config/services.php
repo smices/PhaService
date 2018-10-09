@@ -143,7 +143,8 @@ $di->setShared('db', function () {
  */
 $di->setShared('beanstalk', function () {
     $config = $this->getConfig();
-    return new Phalcon\Queue\Beanstalk($config->beanstalk->toArray());
+    //return new Phalcon\Queue\Beanstalk($config->beanstalk->toArray());
+    return new Beanspeak\Client($config->beanstalk->toArray());
 });
 
 

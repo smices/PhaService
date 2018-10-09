@@ -388,7 +388,7 @@ class StdWebSocketServer
 var ws = new WebSocket('ws://127.0.0.1:8090');
 ws.onopen = function (evt) {
     console.log("Connected to PhaService.StdWebSocketServer.");
-    ws.send('whoami');
+    ws.send('{"cmd":"main.whoami","argv":"no data"}');
 }
 ws.onclose = function (evt) {console.log("disconnected.");}
 ws.onmessage = function (evt) {console.log('rev:' + evt.data);}
