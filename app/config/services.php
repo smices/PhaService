@@ -83,6 +83,25 @@ $di->setShared('db', function () {
 
 
 /**
+ * The logger
+ */
+//$di->setShared('logger', function () {
+//    $loggerFile = sprintf('%s/var/log/%d.log', BASE_PATH, date('ymd'));
+//    if (!is_dir(dirname($loggerFile))) @mkdir(dirname($loggerFile), 0755, TRUE);
+//
+//    return new \Phalcon\Logger\Adapter\File($loggerFile, ['mode' => 'a']);
+//});
+
+$di->setShared('logger', function () {
+    $logDir = BASE_PATH . '/var/log/cli/' . date('ymd') . '/';
+    if (!is_dir($logDir)) @mkdir($logDir, 0755, TRUE);
+    return new Phalcon\Logger\Adapter\File\Multiple($logDir, [
+        'prefix' => date('ymd'),
+    ]);
+});
+
+
+/**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
 $di->setShared('modelsMetadata', function () {

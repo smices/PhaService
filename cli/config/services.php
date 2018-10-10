@@ -1,4 +1,5 @@
 <?php
+
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 
@@ -13,11 +14,19 @@ $di->setShared('config', function () {
 /**
  * The logger
  */
-$di->setShared('logger', function () {
-    $loggerFile = sprintf('%s/var/log/%d.log', BASE_PATH, date('ymd'));
-    if (!is_dir(dirname($loggerFile))) @mkdir(dirname($loggerFile), 0755, TRUE);
+//$di->setShared('logger', function () {
+//    $loggerFile = sprintf('%s/var/log/%d.log', BASE_PATH, date('ymd'));
+//    if (!is_dir(dirname($loggerFile))) @mkdir(dirname($loggerFile), 0755, TRUE);
+//
+//    return new \Phalcon\Logger\Adapter\File($loggerFile, ['mode' => 'a']);
+//});
 
-    return new \Phalcon\Logger\Adapter\File($loggerFile, ['mode' => 'a']);
+$di->setShared('logger', function () {
+    $logDir = BASE_PATH . '/var/log/cli/' . date('ymd') . '/';
+    if (!is_dir($logDir)) @mkdir($logDir, 0755, TRUE);
+    return new Phalcon\Logger\Adapter\File\Multiple($logDir, [
+        'prefix' => date('ymd'),
+    ]);
 });
 
 
@@ -151,7 +160,7 @@ $di->setShared('beanstalk', function () {
 /**
  * Set the default namespace for dispatcher
  */
-$di->setShared('dispatcher', function() {
+$di->setShared('dispatcher', function () {
     $dispatcher = new Dispatcher();
     //$dispatcher->setDefaultNamespace('PhaService\Tasks');
     return $dispatcher;

@@ -127,7 +127,11 @@ Web与Cli分开配置,配置文件位于:
 ./run mailsender -h
 
 #参数 6 为开启6个子进程同时处理任务
-./run mailsender 6 
+./run mailsender main 6 
+
+#查看队列任务数量
+./run mailsender info
+
 ```
 ** Beantalk 队列可以使用 https://github.com/xuri/aurora 可视化工具进行操作管理.
 
