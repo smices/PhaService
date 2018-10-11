@@ -22,7 +22,8 @@
   "homepage": "https://github.com/smices/PhaService",
   "require": {
     "php": ">=7.1",
-    "phalcon/incubator": "^3.4"
+    "phalcon/incubator": "^3.4",
+    "jakub-onderka/php-console-color": "~0.2"
   },
   "require-dev": {
     "kint-php/kint": "dev-master"
