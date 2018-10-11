@@ -34,7 +34,7 @@
       "sys\\": "sys"
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "config": {
     "vendor-dir": "vendor",
     "sort-packages": true,
