@@ -1,39 +1,51 @@
 {
-    "name": "jackyzux/PhaService",
-    "authors": [
-        {
-            "name": "jacky",
-            "email": "jacky.ju@qq.com"
-        }
-    ],
-    "description": "Public Phalcon Service",
-    "require": {
-        "firebase/php-jwt": "^5.0",
-        "hashids/hashids": "^2.0",
-        "mobiledetect/mobiledetectlib": "^2.8",
-        "jakub-onderka/php-console-color": "~0.2",
-        "phalcon/incubator": "^3.4"
-    },
-    "require-dev": {
-        "kint-php/kint": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "app\\": "app"
-        }
-    },
-    "minimum-stability": "stable",
-    "config": {
-        "vendor-dir": "vendor",
-        "sort-packages": true,
-        "optimize-autoloader": true
-    },
-    "scripts": {
-        "post-root-package-install": [
-            "php -r \"mkdir('var/log');\"",
-            "php -r \"mkdir('var/cache');\"",
-            "php -r \"mkdir('var/tmp');\"",
-            "php -r \"mkdir('var/pid');\""
-        ]
+  "name": "smices/pha-service",
+  "license": "LGPL",
+  "keywords": [
+    "swoole",
+    "phalcon",
+    "websocket",
+    "beanstalk",
+    "redis",
+    "multi process",
+    "task worker",
+    "message queue"
+  ],
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "jacky",
+      "email": "jacky.ju@qq.com"
     }
+  ],
+  "description": "Phalcon + Swoole 无侵入解决方案",
+  "homepage": "https://github.com/smices/PhaService",
+  "require": {
+    "php": ">=7.1",
+    "phalcon/incubator": "^3.4"
+  },
+  "require-dev": {
+    "kint-php/kint": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "app",
+      "cli\\": "cli",
+      "sys\\": "sys"
+    }
+  },
+  "minimum-stability": "stable",
+  "config": {
+    "vendor-dir": "vendor",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"mkdir('var/log');\"",
+      "php -r \"mkdir('var/cache');\"",
+      "php -r \"mkdir('var/tmp');\"",
+      "php -r \"mkdir('var/pid');\""
+    ]
+  }
 }
