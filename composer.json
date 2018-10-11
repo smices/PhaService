@@ -1,6 +1,6 @@
 {
   "name": "smices/pha-service",
-  "license": "LGPL",
+  "license": "MIT",
   "keywords": [
     "swoole",
     "phalcon",
