@@ -133,6 +133,18 @@ Web与Cli分开配置,配置文件位于:
 ./run mailsender info
 
 ```
+添加数据到邮件队列:
+```php
+<?php
+$mq = new Beanspeak\Client(['host' => '127.0.0.1', 'port' => '11300']);
+$data = [
+    'to'      => ['jacky.ju@qq.com', 'JACKY JU'],
+    'subject' => '测试标题',
+    'content' => 'HELLO'
+];
+$mq->putInTube('MAIL_SENDER', $data);
+```
+
 ** Beantalk 队列可以使用 https://github.com/xuri/aurora 可视化工具进行操作管理.
 
 
