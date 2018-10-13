@@ -43,6 +43,7 @@
   },
   "scripts": {
     "post-root-package-install": [
+      "php -r \"mkdir('var');\"",
       "php -r \"mkdir('var/log');\"",
       "php -r \"mkdir('var/cache');\"",
       "php -r \"mkdir('var/tmp');\"",
