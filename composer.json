@@ -1,6 +1,16 @@
 {
   "name": "smices/pha-service",
   "license": "MIT",
+  "type": "project",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "jacky",
+      "email": "jacky.ju@qq.com"
+    }
+  ],
+  "description": "Phalcon + Swoole 无侵入解决方案",
+  "homepage": "https://github.com/smices/PhaService",
   "keywords": [
     "swoole",
     "phalcon",
@@ -11,15 +21,6 @@
     "task worker",
     "message queue"
   ],
-  "version": "1.0.0",
-  "authors": [
-    {
-      "name": "jacky",
-      "email": "jacky.ju@qq.com"
-    }
-  ],
-  "description": "Phalcon + Swoole 无侵入解决方案",
-  "homepage": "https://github.com/smices/PhaService",
   "require": {
     "php": ">=7.1",
     "phalcon/incubator": "^3.4",
