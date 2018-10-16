@@ -5,6 +5,8 @@
  * @description('Welcome', '显示欢迎信息')
  */
 
+use PhaSvc\Base\TaskBase;
+
 class MainTask extends TaskBase
 {
     /**

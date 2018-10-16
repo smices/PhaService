@@ -5,6 +5,8 @@
  * @description('邮件发送处理', '基于队列的邮件处理单元')
  */
 
+use PhaSvc\Base\TaskBase;
+
 class MailSenderTask extends TaskBase
 {
     use MultiProcessor;

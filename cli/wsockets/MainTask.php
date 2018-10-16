@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * WebSocket default controller
+ *
+ */
+
+use PhaSvc\Base\WebSocketBase;
+
 class MainTask extends WebSocketBase
 {
     public function mainAction()

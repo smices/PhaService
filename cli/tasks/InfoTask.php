@@ -5,6 +5,8 @@
  * @description('The services information', 'Display the service and system information')
  */
 
+use PhaSvc\Base\TaskBase;
+
 class InfoTask extends TaskBase
 {
     /**

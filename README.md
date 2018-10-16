@@ -63,7 +63,7 @@ composer install -o
 可以使用`sys/systemd/StdWebServer.GenService.php`可以生成`systemd service`文件,
 根据提示安装成服务.
 
-```
+```bash
 cd sys/systemd/
 php StdWebServer.GenService.php
 ```
@@ -76,7 +76,7 @@ php StdWebServer.GenService.php
 可以使用 `sys/systemd/StdWebSocketServer.GenService.php` 可以生成`systemd service`文件,
 根据提示安装成服务.
 
-```
+```bash
 cd sys/systemd/
 php StdWebSocketServer.GenService.php
 ```
@@ -118,6 +118,11 @@ Web与Cli分开配置,配置文件位于:
 
 
 ## Documents
+
+###使用Composer建立项目
+'''bash
+composer create-project smices/pha-service -s dev
+'''
 
 ###多进程Task任务处理
 该服务会在任务处理完成后,持续拉起服务,所以可以实现类似php-fpm的特点, 任务处理指定次数后退出任务,服务会自动拉起服务.   

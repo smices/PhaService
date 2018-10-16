@@ -34,11 +34,12 @@ $loader->registerDirs([
     BASE_PATH . '/cli/wsockets',
     BASE_PATH . '/cli/library',
     BASE_PATH . '/app/models',
+    BASE_PATH . '/library',
 ]);
 
-//$loader->registerNamespaces([
-//    'PhaService\WebSocket' => BASE_PATH . '/cli/wsockets',
-//]);
+$loader->registerNamespaces([
+    'PhaSvc' => BASE_PATH . '/library/PhaSvc',
+]);
 
 $loader->register();
 

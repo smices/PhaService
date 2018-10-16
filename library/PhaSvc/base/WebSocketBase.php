@@ -1,4 +1,5 @@
 <?php
+namespace PhaSvc\Base;
 
 use JakubOnderka\PhpConsoleColor\ConsoleColor;
 

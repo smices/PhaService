@@ -1,11 +1,12 @@
 <?php
+namespace PhaSvc\Base;
 
 /**
  * 基于 Swoole 的多进程任务处理
  *
  */
 
-Trait MultiProcessor
+Trait MultiProcessBase
 {
     public $process_name = 'PhaService';
     public $debugger     = FALSE;

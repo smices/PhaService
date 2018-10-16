@@ -6,7 +6,7 @@ $loader = new \Phalcon\Loader();
  * We're a registering a set of directories taken from the configuration file
  */
 $loader->registerNamespaces([
-    //'Phalcon' => BASE_PATH . '/library/Phalcon',
+    'PhaSvc' => BASE_PATH . '/library/PhaSvc',
 ]);
 
 
@@ -16,15 +16,14 @@ $loader->registerDirs(
         //$config->application->modelsDir
         APP_PATH . '/controllers',
         APP_PATH . '/models',
+        BASE_PATH . '/library',
     ]
 );
 
 
 $loader->register();
 
-
-
-//require BASE_PATH . '/vendor/autoload.php'; //Composer Loader
+require BASE_PATH . '/vendor/autoload.php'; //Composer Loader
 
 if ($dev = file_exists(BASE_PATH . '/.development') || $test = file_exists(BASE_PATH . '/.testing')) {
     define('APP_DEBUGGER', 1);
