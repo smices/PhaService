@@ -14,3 +14,4 @@ composer.lock
 /var/cache/*
 /var/tmp/*
 /var/pid/*
+/.tools

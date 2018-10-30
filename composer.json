@@ -1,6 +1,6 @@
 {
   "name": "smices/pha-service",
-  "license": "MIT",
+  "license": "LGPL-2.1",
   "type": "project",
   "version": "1.0.0",
   "authors": [
@@ -23,8 +23,9 @@
   ],
   "require": {
     "php": ">=7.1",
-    "phalcon/incubator": "^3.4",
-    "jakub-onderka/php-console-color": "~0.2"
+    "jakub-onderka/php-console-color": "dev-master",
+    "nesbot/carbon": "dev-master",
+    "phalcon/incubator": "dev-master"
   },
   "require-dev": {
     "kint-php/kint": "dev-master"

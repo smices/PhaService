@@ -294,7 +294,6 @@ class StdWebSocketServer
                     $arguments['task']   = $action[0] ?? 'main';
                     $arguments['action'] = $action[1] ?? 'main';
                     $arguments['params'] = ['fd' => $fd, 'data' => $args['argv']];
-                    s($arguments);
                     $this->application->handle($arguments);
                 }else{
                     $ws->push($fd, 'COMMAND ERROR');

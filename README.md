@@ -38,14 +38,24 @@ Transfer/sec:      3.64MB
 
 *依赖*:
 
-> Ubuntu 16.04LTS/18.04LTS   
-> PHP: 7.0+, 推荐 7.2或以上    
-> Beantalkd 队列处理依赖    
-> php扩展 Phalcon 3.x+    
-> php扩展 Swoole 2.x+    
-> php扩展 Redis  
-> php扩展 Beanspeak  
-> php扩展 Pdo,Pdo MySQL  
+> 操作系统:
+>* Ubuntu 16.04LTS/18.04LTS
+>   
+> PHP 版本:  
+>* PHP: 7.0+, 推荐 7.2或以上
+>
+> 系统服务:       
+>* Beantalkd 队列处理依赖
+>  
+> PHP 扩展:    
+>* Pdo, Pdo MySQL    
+>* Phalcon 3.x+     
+>* Swoole 4.x+      
+>* Redis  
+>* Beanspeak  (https://github.com/phalcongelist/beanspeak)    
+>* JWT (手动安装: https://github.com/cdoco/php-jwt)   
+>* libsodium (http://pecl.php.net/get/libsodium) **php7.2已内置,无需安装**  
+>* DonkeyId (https://github.com/osgochina/donkeyid)        
 
 ####初始化
 
